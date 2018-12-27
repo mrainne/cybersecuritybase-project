@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Signups</title>
+    </head>
+    <body>
+        <h1>Signups</h1>
+        <ol>
+            <li th:each="signup: ${signups}">
+                <strong th:text="${signup.name}"></strong> (<span th:text="${signup.address}"></span>)
+            </li>
+        </ol>
+    </body>
+</html>

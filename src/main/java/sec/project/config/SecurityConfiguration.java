@@ -20,18 +20,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // no real security at the moment
+        // disable unnecessary automated security
+        http.headers().xssProtection().disable();
+        http.csrf().disable();
+        
+        // login page to make app more secure :-) 
         http.authorizeRequests()
-                .anyRequest().permitAll();
+                .anyRequest().authenticated().and().formLogin().permitAll();   
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    // password encoding is waste of time, right?
+    //@Autowired
+    //public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    //    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    //}
+    
+    //@Bean
+    //public PasswordEncoder passwordEncoder() {
+    //    return new BCryptPasswordEncoder();
+    //}
 }
