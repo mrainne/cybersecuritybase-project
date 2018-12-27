@@ -1,0 +1,6 @@
+Default users and passwords:
+
+admin:admin
+ted:ted
+alice:bob
+
